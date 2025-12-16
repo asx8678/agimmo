@@ -32,7 +32,7 @@
 		}
 	],
 	"vars": {
-		"AGI_APP_URL": "https://agi-codex-agadir.trillion.workers.dev",
+		"AGI_APP_URL": "https://agimmo.trillion.workers.dev",
 		"AGI_PBKDF2_ITERS": "100000",
 		"AGI_STRIPE_PUBLISHABLE_KEY": "pk_test_replace_me",
 		"AGI_STRIPE_PRICE_PRO": "price_replace_me"

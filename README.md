@@ -61,7 +61,7 @@ pnpm dev:cf
 
 This project uses the required resource names:
 
-- Worker: `agi-codex-agadir`
+- Worker: `agimmo`
 - D1 database: `agi-db` (binding `AGI_DB`)
 - KV namespace: `agi-sessions` (binding `AGI_SESSIONS`)
 - R2 bucket: `agi-images` (binding `AGI_IMAGES`, served from `/images/...`)

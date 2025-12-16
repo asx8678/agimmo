@@ -79,19 +79,25 @@
 			</div>
 		</div>
 
-		<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
-			<div class="lg:col-span-4">
-				<Label for="agi-location" class="sr-only">Location</Label>
-				<Input
-					id="agi-location"
-					placeholder="Search city or neighborhood"
-					aria-label="Location"
-					value={$agiFilters.locationQuery}
-					data={suggestions}
-					class="agi-control"
-					oninput={onText('locationQuery')}
-				/>
-			</div>
+			<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
+				<div class="lg:col-span-4">
+					<Label for="agi-location" class="sr-only">Location</Label>
+					<div class="relative">
+						<div
+							aria-hidden="true"
+							class="agi-zellige-line pointer-events-none absolute inset-x-0 top-0 z-10 h-1 rounded-t-xl"
+						></div>
+						<Input
+							id="agi-location"
+							placeholder="Search city or neighborhood"
+							aria-label="Location"
+							value={$agiFilters.locationQuery}
+							data={suggestions}
+							class="agi-control relative z-0"
+							oninput={onText('locationQuery')}
+						/>
+					</div>
+				</div>
 
 			<div class="lg:col-span-2">
 				<div class="flex h-11 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white/80 px-3 shadow-sm dark:border-gray-800 dark:bg-gray-950/70">
