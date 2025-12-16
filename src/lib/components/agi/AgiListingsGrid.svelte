@@ -30,7 +30,7 @@
 </script>
 
 {#if listings.length === 0}
-	<div class="rounded-2xl border border-dashed border-gray-300 bg-white/60 p-8 text-center text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-950/40 dark:text-gray-300">
+	<div class="agi-surface border-dashed border-gray-300/80 bg-white/50 p-8 text-center text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-950/40 dark:text-gray-300">
 		<p class="text-base font-semibold text-gray-900 dark:text-gray-100">No homes found</p>
 		<p class="mt-2">Try widening your search — fewer filters, broader location.</p>
 	</div>

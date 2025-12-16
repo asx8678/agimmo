@@ -53,6 +53,38 @@ html.dark {
 	:where(.dark, .dark *) .agi-zellige-line {
 		opacity: 0.5;
 	}
+
+	.agi-surface {
+		@apply rounded-2xl border border-gray-200/70 bg-white/60 shadow-sm ring-1 ring-gray-200/40 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:ring-black/20;
+	}
+
+	.agi-surface-elevated {
+		@apply rounded-2xl border border-gray-200/70 bg-white/60 shadow-xl ring-1 ring-gray-200/40 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:ring-black/20;
+	}
+
+	.agi-control {
+		@apply h-11 rounded-xl border-gray-200 bg-white/80 shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-200/60 dark:border-gray-800 dark:bg-gray-950/70 dark:focus:border-emerald-400 dark:focus:ring-emerald-900/40;
+	}
+
+	.agi-control-sm {
+		@apply h-10 rounded-xl border-gray-200 bg-white/80 shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-200/60 dark:border-gray-800 dark:bg-gray-950/70 dark:focus:border-emerald-400 dark:focus:ring-emerald-900/40;
+	}
+
+	.agi-pill {
+		@apply inline-flex items-center gap-2 rounded-full border border-gray-200/70 bg-white/70 px-3 py-1 text-xs text-gray-700 shadow-sm ring-1 ring-gray-200/40 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:text-gray-200 dark:ring-black/20;
+	}
+
+	.agi-link {
+		@apply font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-400;
+	}
+
+	.agi-btn-primary {
+		@apply rounded-xl bg-gradient-to-r from-emerald-600 to-sky-600 text-white shadow-sm hover:from-emerald-500 hover:to-sky-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/60 disabled:opacity-60 dark:focus-visible:ring-emerald-900/40;
+	}
+
+	.agi-btn-light {
+		@apply rounded-xl shadow-sm;
+	}
 }
 
 html,

@@ -8,6 +8,12 @@
 		"directory": ".svelte-kit/cloudflare",
 		"binding": "ASSETS"
 	},
+	"r2_buckets": [
+		{
+			"binding": "AGI_IMAGES",
+			"bucket_name": "agi-images"
+		}
+	],
 	"d1_databases": [
 		{
 			"binding": "AGI_DB",

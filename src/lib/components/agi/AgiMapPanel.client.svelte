@@ -147,13 +147,14 @@
 </script>
 
 <div class={className ?? ''}>
-	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/60 dark:border-gray-800 dark:bg-gray-950/40">
+	<div class="agi-surface relative h-full overflow-hidden bg-white/60 dark:bg-gray-950/40">
 		<div class="absolute inset-x-0 top-0">
 			<AgiZelligeLine class="opacity-70" />
 		</div>
 		<div bind:this={container} class="h-full min-h-[320px] w-full"></div>
 
 		{#if selectedListing}
+			<div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/85 to-transparent dark:from-gray-950/75"></div>
 			<div class="pointer-events-none absolute inset-x-0 bottom-0 p-3">
 				<a
 					href={`/listings/${selectedListing.id}`}
@@ -167,9 +168,9 @@
 					</div>
 					<div class="shrink-0 text-right">
 						<p class="text-sm font-semibold">{formatPrice(selectedListing)}</p>
-						<span class="mt-0.5 inline-flex items-center rounded-full bg-gray-900 px-2 py-0.5 text-[11px] font-medium text-white dark:bg-white dark:text-gray-900">
-							View
-						</span>
+							<span class="mt-0.5 inline-flex items-center rounded-full bg-gradient-to-r from-emerald-600 to-sky-600 px-2 py-0.5 text-[11px] font-medium text-white shadow-sm">
+								View
+							</span>
 					</div>
 				</a>
 			</div>

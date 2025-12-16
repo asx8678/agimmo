@@ -57,7 +57,7 @@
 </script>
 
 <div class="space-y-6">
-	<div class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-3 py-1 text-xs text-gray-700 ring-1 ring-white/60 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:text-gray-200 dark:ring-black/20">
+	<div class="agi-pill">
 		<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 		Find homes in Agadir — rent or buy, without the noise.
 	</div>
@@ -71,7 +71,7 @@
 
 		<div class="flex items-center gap-2">
 			{#if $agiIsAnyFilterActive}
-				<Button color="light" onclick={resetAgiFilters}>
+				<Button color="light" class="agi-btn-light" onclick={resetAgiFilters}>
 					Clear
 					{#if $agiActiveFiltersCount > 0}
 						<span class="hidden sm:inline text-xs opacity-70"> ({$agiActiveFiltersCount})</span>
@@ -84,11 +84,12 @@
 					aria-label="Sort listings"
 					value={$agiFilters.sort as any}
 					onchange={setSort}
+					classes={{ select: 'agi-control-sm' }}
 					items={sortOptions.map((o) => ({ name: o.label, value: o.value }))}
 				/>
 			</div>
 
-			<div class="inline-flex overflow-hidden rounded-xl border border-gray-200 bg-white/70 p-1 text-sm dark:border-gray-800 dark:bg-gray-950/60">
+			<div class="inline-flex overflow-hidden rounded-xl border border-gray-200 bg-white/70 p-1 text-sm shadow-sm ring-1 ring-white/60 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:ring-black/20">
 				<button
 					type="button"
 					class={

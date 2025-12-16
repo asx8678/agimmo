@@ -22,18 +22,23 @@
 	};
 </script>
 
-<Navbar class="border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-950/70">
+<Navbar class="border-b border-gray-200/70 bg-white/80 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-gray-950/70">
 	<NavBrand href="/" class="gap-2">
-		<span class="text-lg font-semibold tracking-tight">Agimmo</span>
+		<span class="text-lg font-semibold tracking-tight">
+			<span class="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">Agimmo</span>
+		</span>
 	</NavBrand>
 
 	<div class="flex items-center gap-2 md:order-2">
-		<Button href="/list-property" class="hidden md:inline-flex bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500">
+		<Button
+			href="/list-property"
+			class="hidden md:inline-flex agi-btn-primary"
+		>
 			List a property
 		</Button>
 
 		{#if user}
-			<Button id={accountBtnId} color="light" class="hidden md:inline-flex">
+			<Button id={accountBtnId} color="light" class="hidden md:inline-flex agi-btn-light">
 				<span class="max-w-[16rem] truncate text-sm">{user.email}</span>
 			</Button>
 			<Dropdown triggeredBy={'#' + accountBtnId} placement="bottom-end" class="w-56">
@@ -47,7 +52,7 @@
 				<DropdownItem onclick={signOut}>Sign out</DropdownItem>
 			</Dropdown>
 		{:else}
-			<Button href="/signin" color="light" class="hidden md:inline-flex">Sign in</Button>
+			<Button href="/signin" color="light" class="hidden md:inline-flex agi-btn-light">Sign in</Button>
 		{/if}
 
 		<NavHamburger />
@@ -63,4 +68,3 @@
 		{/if}
 	</NavUl>
 </Navbar>
-

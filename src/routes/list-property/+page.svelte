@@ -20,20 +20,26 @@
 		</p>
 
 		<div class="mt-6 flex flex-wrap gap-2">
-			<Button href="/" color="light">Browse listings</Button>
+			<Button href="/" color="light" class="agi-btn-light">Browse listings</Button>
 			{#if data.user}
-				<Button href="/dashboard" class="bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500">
+				<Button
+					href="/dashboard"
+					class="agi-btn-primary"
+				>
 					Go to account
 				</Button>
 			{:else}
-				<Button href="/signup" class="bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500">
+				<Button
+					href="/signup"
+					class="agi-btn-primary"
+				>
 					Create an account
 				</Button>
 			{/if}
 		</div>
 	</div>
 
-	<Card class="border-0 shadow-sm ring-1 ring-gray-200/70 dark:bg-gray-950/60 dark:ring-gray-800">
+	<Card size="xl" class="rounded-2xl border-0 bg-white/70 p-6 shadow-sm ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 		<h2 class="text-lg font-semibold">What to build next</h2>
 		<ul class="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-300">
 			<li>Property basics: title, type, beds/baths, area</li>

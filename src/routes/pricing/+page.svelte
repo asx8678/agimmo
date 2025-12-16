@@ -9,7 +9,7 @@
 	</header>
 
 	<div class="grid gap-6 md:grid-cols-2">
-		<Card class="border-0 shadow-lg">
+		<Card size="xl" class="rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 			<h2 class="text-xl font-semibold">Free</h2>
 			<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">For trying the starter and building your MVP.</p>
 			<p class="mt-6 text-4xl font-semibold">$0</p>
@@ -19,11 +19,14 @@
 				<li>Upgrade anytime</li>
 			</ul>
 			<div class="mt-8">
-				<Button href="/signup" color="light">Create account</Button>
+				<Button href="/signup" color="light" class="agi-btn-light">Create account</Button>
 			</div>
 		</Card>
 
-		<Card class="border-0 shadow-lg ring-1 ring-blue-200 dark:ring-blue-900">
+		<Card
+			size="xl"
+			class="rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-blue-200 backdrop-blur dark:bg-gray-950/60 dark:ring-blue-900 sm:p-7"
+		>
 			<div class="flex items-center justify-between gap-3">
 				<h2 class="text-xl font-semibold">Pro</h2>
 				<span class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">Best value</span>
@@ -37,10 +40,9 @@
 				<li>Webhook-driven billing state</li>
 			</ul>
 			<div class="mt-8 flex flex-wrap gap-3">
-				<Button href="/signup">Get started</Button>
-				<Button href="/signin" color="light">I already have an account</Button>
+				<Button href="/signup" class="agi-btn-primary">Get started</Button>
+				<Button href="/signin" color="light" class="agi-btn-light">I already have an account</Button>
 			</div>
 		</Card>
 	</div>
 </div>
-

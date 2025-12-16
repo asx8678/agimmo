@@ -64,6 +64,7 @@ This project uses the required resource names:
 - Worker: `agi-codex-agadir`
 - D1 database: `agi-db` (binding `AGI_DB`)
 - KV namespace: `agi-sessions` (binding `AGI_SESSIONS`)
+- R2 bucket: `agi-images` (binding `AGI_IMAGES`, served from `/images/...`)
 
 ### 1) Create D1 + KV
 
@@ -73,6 +74,12 @@ wrangler kv namespace create agi-sessions
 ```
 
 Update `wrangler.jsonc` with the printed `database_id` and KV `id`.
+
+### 1b) Create R2 bucket (optional, for demo listing images)
+
+```bash
+wrangler r2 bucket create agi-images
+```
 
 ### 2) Apply migrations (remote)
 
@@ -93,6 +100,18 @@ wrangler secret put AGI_STRIPE_WEBHOOK_SECRET
 ```bash
 pnpm deploy
 ```
+
+## Demo listing images (R2)
+
+This repo ships mock listings with image URLs like `/images/listings/<id>.jpg`. In production, the Worker serves these from R2.
+
+Seed 20 demo images into R2 (downloads from Unsplash CDN and uploads to `agi-images`):
+
+```bash
+pnpm seed:r2-images
+```
+
+These images are for design/testing only; replace with your own uploads for production.
 
 ## Stripe setup (manual)
 

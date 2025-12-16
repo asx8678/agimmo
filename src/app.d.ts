@@ -1,4 +1,4 @@
-import type { D1Database, KVNamespace } from '@cloudflare/workers-types';
+import type { D1Database, KVNamespace, R2Bucket } from '@cloudflare/workers-types';
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -14,6 +14,7 @@ declare global {
 		interface Platform {
 			env: {
 				AGI_DB: D1Database;
+				AGI_IMAGES: R2Bucket;
 				AGI_SESSIONS: KVNamespace;
 
 				AGI_APP_URL: string;

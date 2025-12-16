@@ -11,8 +11,8 @@
 	const { form, errors, enhance, submitting, message } = sf;
 </script>
 
-<div class="mx-auto max-w-md">
-	<Card class="border-0 shadow-lg">
+<div class="mx-auto grid min-h-[calc(100vh-12rem)] max-w-md place-items-center">
+	<Card size="xl" class="w-full rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 		<header class="space-y-1">
 			<h1 class="text-2xl font-semibold tracking-tight">Create your account</h1>
 			<p class="text-sm text-gray-600 dark:text-gray-300">Start exploring with Agimmo.</p>
@@ -32,12 +32,13 @@
 
 		<form method="POST" use:enhance class="mt-6 space-y-4">
 			<FormField name="email" label="Email" errors={$errors.email}>
-				<Input id="email" name="email" type="email" autocomplete="email" bind:value={$form.email} required />
+				<Input id="email" class="agi-control" name="email" type="email" autocomplete="email" bind:value={$form.email} required />
 			</FormField>
 
 			<FormField name="password" label="Password" errors={$errors.password}>
 				<Input
 					id="password"
+					class="agi-control"
 					name="password"
 					type="password"
 					autocomplete="new-password"
@@ -51,7 +52,7 @@
 
 		<p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
 			Already have an account?
-			<a class="font-medium text-blue-700 hover:underline dark:text-blue-400" href="/signin">Sign in</a>
+			<a class="agi-link" href="/signin">Sign in</a>
 		</p>
 	</Card>
 </div>

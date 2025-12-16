@@ -41,19 +41,20 @@
 
 <a
 	href={`/listings/${listing.id}`}
-	class="group block focus:outline-none"
+	class="group block rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/60 dark:focus-visible:ring-emerald-900/40"
 	onmouseenter={() => dispatch('hover', { id: listing.id })}
 	onmouseleave={() => dispatch('unhover', { id: listing.id })}
 	onfocusin={() => dispatch('hover', { id: listing.id })}
 	onfocusout={() => dispatch('unhover', { id: listing.id })}
 >
 	<Card
+		size="xl"
 		class={
-			'relative overflow-hidden border-0 bg-white/80 shadow-sm ring-1 ring-gray-200/70 transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-sm hover:ring-emerald-500/15 dark:bg-gray-950/60 dark:ring-gray-800 dark:hover:ring-emerald-400/15 ' +
+			'relative overflow-hidden rounded-2xl border-0 bg-white/80 shadow-sm ring-1 ring-gray-200/70 transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-sm hover:ring-emerald-500/15 dark:bg-gray-950/60 dark:ring-gray-800 dark:hover:ring-emerald-400/15 ' +
 			(selected ? 'ring-2 ring-emerald-500/60 dark:ring-emerald-400/50' : '')
 		}
 	>
-		<div class="relative -mx-6 -mt-6 mb-4 overflow-hidden">
+		<div class="relative overflow-hidden">
 			<img
 				alt={listing.title}
 				src={listing.coverImage}
@@ -92,8 +93,10 @@
 			</div>
 		</div>
 
-		<div class="space-y-2">
-			<h3 class="line-clamp-1 text-base font-semibold tracking-tight">{listing.title}</h3>
+		<div class="space-y-2 p-5 sm:p-6">
+			<h3 class="line-clamp-1 text-base font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+				{listing.title}
+			</h3>
 
 			<p class="text-sm text-gray-600 dark:text-gray-300">
 				{listing.neighborhood}, {listing.city}

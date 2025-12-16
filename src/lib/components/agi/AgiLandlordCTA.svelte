@@ -23,11 +23,11 @@
 			<div class="flex flex-wrap gap-2">
 				<Button
 					href="/list-property"
-					class="bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500"
+					class="agi-btn-primary"
 				>
 					List a property
 				</Button>
-				<Button href="/signin" color="light">Sign in</Button>
+				<Button href="/signin" color="light" class="agi-btn-light">Sign in</Button>
 			</div>
 		</div>
 	</div>

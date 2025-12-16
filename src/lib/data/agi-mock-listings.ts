@@ -1,6 +1,6 @@
 import type { AgiListing } from '$lib/types/agi-listing';
 
-const placeholder = '/agi/listing-placeholder.svg';
+const demoImage = (id: string) => `/images/listings/${id}.jpg`;
 
 export const agiMockListings: AgiListing[] = [
 	{
@@ -20,7 +20,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: true,
 		badges: ['Sea view', 'Furnished'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-001'),
 		createdAt: '2025-12-10T10:20:00.000Z'
 	},
 	{
@@ -40,7 +40,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Studio',
 		furnished: false,
 		badges: ['Terrace'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-002'),
 		createdAt: '2025-12-08T14:05:00.000Z'
 	},
 	{
@@ -59,7 +59,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: false,
 		badges: ['New', 'Parking'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-003'),
 		createdAt: '2025-12-14T09:40:00.000Z'
 	},
 	{
@@ -79,7 +79,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: true,
 		badges: ['New'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-004'),
 		createdAt: '2025-12-12T18:15:00.000Z'
 	},
 	{
@@ -98,7 +98,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'House',
 		furnished: false,
 		badges: ['Garden', 'Renovated'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-005'),
 		createdAt: '2025-11-28T11:10:00.000Z'
 	},
 	{
@@ -118,7 +118,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: false,
 		badges: ['Balcony'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-006'),
 		createdAt: '2025-12-05T08:30:00.000Z'
 	},
 	{
@@ -137,7 +137,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Riad',
 		furnished: false,
 		badges: ['Courtyard', 'Renovated'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-007'),
 		createdAt: '2025-12-02T16:25:00.000Z'
 	},
 	{
@@ -157,7 +157,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Studio',
 		furnished: true,
 		badges: ['Sea view', 'Furnished'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-008'),
 		createdAt: '2025-12-15T12:00:00.000Z'
 	},
 	{
@@ -176,7 +176,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: false,
 		badges: ['New'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-009'),
 		createdAt: '2025-12-01T10:05:00.000Z'
 	},
 	{
@@ -196,7 +196,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: true,
 		badges: ['New', 'Furnished'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-010'),
 		createdAt: '2025-12-09T19:35:00.000Z'
 	},
 	{
@@ -216,7 +216,7 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: false,
 		badges: [],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-011'),
 		createdAt: '2025-11-30T07:55:00.000Z'
 	},
 	{
@@ -236,8 +236,163 @@ export const agiMockListings: AgiListing[] = [
 		propertyType: 'Apartment',
 		furnished: false,
 		badges: ['New'],
-		coverImage: placeholder,
+		coverImage: demoImage('agi-lst-012'),
 		createdAt: '2025-12-06T13:10:00.000Z'
+	},
+	{
+		id: 'agi-lst-013',
+		mode: 'rent',
+		title: '1-bed near the beach promenade',
+		city: 'Agadir',
+		neighborhood: 'Corniche',
+		lat: 30.4098,
+		lng: -9.6251,
+		price: 5200,
+		currency: 'MAD',
+		period: 'month',
+		bedrooms: 1,
+		bathrooms: 1,
+		areaM2: 55,
+		propertyType: 'Apartment',
+		furnished: true,
+		badges: ['Sea breeze', 'Furnished'],
+		coverImage: demoImage('agi-lst-013'),
+		createdAt: '2025-12-11T09:05:00.000Z'
+	},
+	{
+		id: 'agi-lst-014',
+		mode: 'buy',
+		title: 'Sunny 2-bed with open kitchen',
+		city: 'Agadir',
+		neighborhood: 'Illigh',
+		lat: 30.3952,
+		lng: -9.5992,
+		price: 1100000,
+		currency: 'MAD',
+		bedrooms: 2,
+		bathrooms: 2,
+		areaM2: 102,
+		propertyType: 'Apartment',
+		furnished: false,
+		badges: ['New', 'Great light'],
+		coverImage: demoImage('agi-lst-014'),
+		createdAt: '2025-12-03T17:45:00.000Z'
+	},
+	{
+		id: 'agi-lst-015',
+		mode: 'rent',
+		title: 'Compact studio, quiet building',
+		city: 'Agadir',
+		neighborhood: 'Haut Founty',
+		lat: 30.3979,
+		lng: -9.6044,
+		price: 3600,
+		currency: 'MAD',
+		period: 'month',
+		bedrooms: 1,
+		bathrooms: 1,
+		areaM2: 34,
+		propertyType: 'Studio',
+		furnished: false,
+		badges: ['Quiet'],
+		coverImage: demoImage('agi-lst-015'),
+		createdAt: '2025-12-04T12:15:00.000Z'
+	},
+	{
+		id: 'agi-lst-016',
+		mode: 'buy',
+		title: 'Renovated house with rooftop terrace',
+		city: 'Agadir',
+		neighborhood: 'Charaf',
+		lat: 30.4328,
+		lng: -9.5763,
+		price: 2800000,
+		currency: 'MAD',
+		bedrooms: 4,
+		bathrooms: 3,
+		areaM2: 195,
+		propertyType: 'House',
+		furnished: false,
+		badges: ['Rooftop', 'Renovated'],
+		coverImage: demoImage('agi-lst-016'),
+		createdAt: '2025-11-26T15:30:00.000Z'
+	},
+	{
+		id: 'agi-lst-017',
+		mode: 'rent',
+		title: '2-bed with workspace corner',
+		city: 'Agadir',
+		neighborhood: 'Dakhla',
+		lat: 30.4431,
+		lng: -9.5691,
+		price: 7600,
+		currency: 'MAD',
+		period: 'month',
+		bedrooms: 2,
+		bathrooms: 1,
+		areaM2: 82,
+		propertyType: 'Apartment',
+		furnished: true,
+		badges: ['Work-ready', 'Furnished'],
+		coverImage: demoImage('agi-lst-017'),
+		createdAt: '2025-12-07T08:55:00.000Z'
+	},
+	{
+		id: 'agi-lst-018',
+		mode: 'buy',
+		title: 'Riad with courtyard and skylight',
+		city: 'Agadir',
+		neighborhood: 'Talborjt',
+		lat: 30.4182,
+		lng: -9.5918,
+		price: 3350000,
+		currency: 'MAD',
+		bedrooms: 5,
+		bathrooms: 4,
+		areaM2: 240,
+		propertyType: 'Riad',
+		furnished: false,
+		badges: ['Courtyard', 'Skylight'],
+		coverImage: demoImage('agi-lst-018'),
+		createdAt: '2025-11-20T10:10:00.000Z'
+	},
+	{
+		id: 'agi-lst-019',
+		mode: 'rent',
+		title: 'Modern 1-bed, minutes to Souk El Had',
+		city: 'Agadir',
+		neighborhood: 'Centre Ville',
+		lat: 30.4216,
+		lng: -9.6061,
+		price: 4800,
+		currency: 'MAD',
+		period: 'month',
+		bedrooms: 1,
+		bathrooms: 1,
+		areaM2: 50,
+		propertyType: 'Apartment',
+		furnished: true,
+		badges: ['New', 'Furnished'],
+		coverImage: demoImage('agi-lst-019'),
+		createdAt: '2025-12-13T20:45:00.000Z'
+	},
+	{
+		id: 'agi-lst-020',
+		mode: 'buy',
+		title: 'Family apartment with wide living room',
+		city: 'Agadir',
+		neighborhood: 'Hay Mohammadi',
+		lat: 30.4095,
+		lng: -9.5554,
+		price: 1380000,
+		currency: 'MAD',
+		bedrooms: 3,
+		bathrooms: 2,
+		areaM2: 128,
+		propertyType: 'Apartment',
+		furnished: false,
+		badges: ['Spacious', 'Parking'],
+		coverImage: demoImage('agi-lst-020'),
+		createdAt: '2025-12-16T09:10:00.000Z'
 	}
 ];
-

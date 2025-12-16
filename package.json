@@ -9,6 +9,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"deploy": "pnpm build && wrangler deploy",
+		"seed:r2-images": "node scripts/seed-r2-images.mjs",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate:local": "wrangler d1 migrations apply agi-db --local",
 		"db:migrate:remote": "wrangler d1 migrations apply agi-db --remote",

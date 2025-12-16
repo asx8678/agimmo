@@ -60,171 +60,175 @@
 	});
 </script>
 
-<section class="sticky top-0 z-40 -mx-4 border-b border-gray-200 bg-gray-50/70 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 sm:-mx-6 lg:-mx-8">
-	<div class="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-		<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/80 p-3 shadow-sm ring-1 ring-white/60 dark:border-gray-800 dark:bg-gray-950/70 dark:ring-black/20">
-			<AgiZelligeCorner corner="top-right" class="opacity-70" />
+<section class="sticky top-0 z-40">
+	<div class="agi-surface relative overflow-hidden p-4">
+		<AgiZelligeCorner corner="top-right" class="opacity-70" />
 
-			<div class="flex flex-wrap items-center justify-between gap-3">
-				<div class="flex items-center gap-2">
-					<div class="inline-flex rounded-xl bg-gradient-to-r from-emerald-600/10 to-sky-600/10 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200/60 dark:text-gray-200 dark:ring-gray-800">
-						Filters
-					</div>
-					{#if $agiActiveFiltersCount > 0}
-						<span class="text-xs text-gray-500 dark:text-gray-400">{$agiActiveFiltersCount} active</span>
-					{/if}
+		<div class="flex flex-wrap items-center justify-between gap-3">
+			<div class="flex items-center gap-2">
+				<div class="agi-pill bg-gradient-to-r from-emerald-600/10 to-sky-600/10 text-xs font-medium text-gray-700 dark:text-gray-200">
+					Filters
 				</div>
-				<div class="flex items-center gap-2">
-					<Button color="light" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>Clear</Button>
-					<Button color="light" onclick={() => (moreOpen = true)}>More</Button>
+				{#if $agiActiveFiltersCount > 0}
+					<span class="text-xs text-gray-500 dark:text-gray-400">{$agiActiveFiltersCount} active</span>
+				{/if}
+			</div>
+			<div class="flex items-center gap-2">
+				<Button color="light" class="agi-btn-light" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>Clear</Button>
+				<Button color="light" class="agi-btn-light" onclick={() => (moreOpen = true)}>More</Button>
+			</div>
+		</div>
+
+		<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
+			<div class="lg:col-span-4">
+				<Label for="agi-location" class="sr-only">Location</Label>
+				<Input
+					id="agi-location"
+					placeholder="Search city or neighborhood"
+					aria-label="Location"
+					value={$agiFilters.locationQuery}
+					data={suggestions}
+					class="agi-control"
+					oninput={onText('locationQuery')}
+				/>
+			</div>
+
+			<div class="lg:col-span-2">
+				<div class="flex h-11 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white/80 px-3 shadow-sm dark:border-gray-800 dark:bg-gray-950/70">
+					<span class="text-xs font-medium text-gray-600 dark:text-gray-300">Mode</span>
+					<div class="flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-900">
+						<button
+							type="button"
+							class={
+								'rounded-lg px-3 py-1.5 text-sm transition ' +
+								($agiFilters.mode === 'rent'
+									? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-gray-100'
+									: 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100')
+							}
+							onclick={onMode('rent')}
+						>
+							Rent
+						</button>
+						<button
+							type="button"
+							class={
+								'rounded-lg px-3 py-1.5 text-sm transition ' +
+								($agiFilters.mode === 'buy'
+									? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-gray-100'
+									: 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100')
+							}
+							onclick={onMode('buy')}
+						>
+							Buy
+						</button>
+					</div>
 				</div>
 			</div>
 
-			<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
-				<div class="lg:col-span-4">
-					<Label for="agi-location" class="sr-only">Location</Label>
-					<Input
-						id="agi-location"
-						placeholder="Search city or neighborhood"
-						aria-label="Location"
-						value={$agiFilters.locationQuery}
-						data={suggestions}
-						oninput={onText('locationQuery')}
-					/>
-				</div>
+			<div class="lg:col-span-2">
+				<Label for="agi-min-price" class="sr-only">Min price</Label>
+				<Input
+					id="agi-min-price"
+					type="number"
+					min="0"
+					inputmode="numeric"
+					placeholder="Min (MAD)"
+					aria-label="Min price"
+					value={$agiFilters.minPrice ?? ''}
+					class="agi-control"
+					oninput={onNumber('minPrice')}
+				/>
+			</div>
+			<div class="lg:col-span-2">
+				<Label for="agi-max-price" class="sr-only">Max price</Label>
+				<Input
+					id="agi-max-price"
+					type="number"
+					min="0"
+					inputmode="numeric"
+					placeholder="Max (MAD)"
+					aria-label="Max price"
+					value={$agiFilters.maxPrice ?? ''}
+					class="agi-control"
+					oninput={onNumber('maxPrice')}
+				/>
+			</div>
 
-				<div class="lg:col-span-2">
-					<div class="flex h-full items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-2 py-2 dark:border-gray-800 dark:bg-gray-950">
-						<span class="text-xs font-medium text-gray-600 dark:text-gray-300">Mode</span>
-						<div class="flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-900">
-							<button
-								type="button"
-								class={
-									'rounded-md px-3 py-1 text-sm transition ' +
-									($agiFilters.mode === 'rent'
-										? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-gray-100'
-										: 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100')
-								}
-								onclick={onMode('rent')}
-							>
-								Rent
-							</button>
-							<button
-								type="button"
-								class={
-									'rounded-md px-3 py-1 text-sm transition ' +
-									($agiFilters.mode === 'buy'
-										? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-gray-100'
-										: 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100')
-								}
-								onclick={onMode('buy')}
-							>
-								Buy
-							</button>
-						</div>
-					</div>
-				</div>
+			<div class="lg:col-span-1">
+				<Label for="agi-beds" class="sr-only">Bedrooms</Label>
+				<Select
+					id="agi-beds"
+					aria-label="Min bedrooms"
+					value={($agiFilters.minBedrooms ?? '') as any}
+					onchange={onNumber('minBedrooms')}
+					placeholder="Beds"
+					classes={{ select: 'agi-control' }}
+					items={[
+						{ name: 'Any beds', value: '' },
+						{ name: '1+', value: '1' },
+						{ name: '2+', value: '2' },
+						{ name: '3+', value: '3' },
+						{ name: '4+', value: '4' }
+					]}
+				/>
+			</div>
 
-				<div class="lg:col-span-2">
-					<Label for="agi-min-price" class="sr-only">Min price</Label>
-					<Input
-						id="agi-min-price"
-						type="number"
-						min="0"
-						inputmode="numeric"
-						placeholder="Min (MAD)"
-						aria-label="Min price"
-						value={$agiFilters.minPrice ?? ''}
-						oninput={onNumber('minPrice')}
-					/>
-				</div>
-				<div class="lg:col-span-2">
-					<Label for="agi-max-price" class="sr-only">Max price</Label>
-					<Input
-						id="agi-max-price"
-						type="number"
-						min="0"
-						inputmode="numeric"
-						placeholder="Max (MAD)"
-						aria-label="Max price"
-						value={$agiFilters.maxPrice ?? ''}
-						oninput={onNumber('maxPrice')}
-					/>
-				</div>
+			<div class="lg:col-span-1">
+				<Label for="agi-type" class="sr-only">Property type</Label>
+				<Select
+					id="agi-type"
+					aria-label="Property type"
+					value={($agiFilters.propertyType ?? '') as any}
+					onchange={onSelect('propertyType')}
+					placeholder="Type"
+					classes={{ select: 'agi-control' }}
+					items={[{ name: 'Any type', value: '' }, ...propertyTypes.map((t) => ({ name: t, value: t }))]}
+				/>
+			</div>
+		</div>
 
-				<div class="lg:col-span-1">
-					<Label for="agi-beds" class="sr-only">Bedrooms</Label>
-					<Select
-						id="agi-beds"
-						aria-label="Min bedrooms"
-						value={($agiFilters.minBedrooms ?? '') as any}
-						onchange={onNumber('minBedrooms')}
-						placeholder="Beds"
-						items={[
-							{ name: 'Any beds', value: '' },
-							{ name: '1+', value: '1' },
-							{ name: '2+', value: '2' },
-							{ name: '3+', value: '3' },
-							{ name: '4+', value: '4' }
-						]}
-					/>
+		{#if $agiActiveFilterChips.length > 0}
+			<div class="mt-3 flex items-center gap-2">
+				<div class="-mx-1 flex flex-1 gap-2 overflow-x-auto px-1 pb-1">
+					{#each $agiActiveFilterChips as chip (chip.key + chip.label)}
+						<button
+							type="button"
+							class="agi-pill shrink-0 font-medium transition hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/60 dark:hover:bg-gray-900 dark:focus-visible:ring-emerald-900/40"
+							onclick={() => clearAgiFilter(chip.key)}
+						>
+							<span>{chip.label}</span>
+							<span class="opacity-60">×</span>
+						</button>
+					{/each}
 				</div>
+			</div>
+		{/if}
 
-					<div class="lg:col-span-1">
-						<Label for="agi-type" class="sr-only">Property type</Label>
-						<Select
-							id="agi-type"
-						aria-label="Property type"
-						value={($agiFilters.propertyType ?? '') as any}
-						onchange={onSelect('propertyType')}
-						placeholder="Type"
-							items={[{ name: 'Any type', value: '' }, ...propertyTypes.map((t) => ({ name: t, value: t }))]}
-						/>
-					</div>
-				</div>
-
-				{#if $agiActiveFilterChips.length > 0}
-					<div class="mt-3 flex items-center gap-2">
-						<div class="-mx-1 flex flex-1 gap-2 overflow-x-auto px-1 pb-1">
-							{#each $agiActiveFilterChips as chip (chip.key + chip.label)}
-								<button
-									type="button"
-									class="inline-flex shrink-0 items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/60 dark:border-gray-800 dark:bg-gray-900/70 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus-visible:ring-emerald-900/40"
-									onclick={() => clearAgiFilter(chip.key)}
-								>
-									<span>{chip.label}</span>
-									<span class="opacity-60">×</span>
-								</button>
-							{/each}
-						</div>
-					</div>
-				{/if}
-
-				<div class="mt-3">
-					<AgiZelligeLine class="opacity-70" />
-				</div>
+		<div class="mt-3">
+			<AgiZelligeLine class="opacity-70" />
 		</div>
 	</div>
 
-		<Drawer placement={wideDrawer ? 'right' : 'bottom'} bind:open={moreOpen} class="p-0">
+	<Drawer placement={wideDrawer ? 'right' : 'bottom'} bind:open={moreOpen} class="p-0">
 		<div class="border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950">
 			<div class="flex items-center justify-between gap-3">
 				<div>
 					<p class="text-sm font-semibold text-gray-900 dark:text-gray-100">More filters</p>
 					<p class="text-xs text-gray-500 dark:text-gray-400">Keep it simple. Add only what you need.</p>
 				</div>
-				<Button color="light" onclick={() => (moreOpen = false)}>Done</Button>
+				<Button color="light" class="agi-btn-light" onclick={() => (moreOpen = false)}>Done</Button>
 			</div>
 		</div>
 
-			<div class="space-y-4 bg-gray-50 px-4 py-4 dark:bg-gray-950">
-				<div class={"grid gap-3 " + (wideDrawer ? '' : 'sm:grid-cols-2')}>
+		<div class="space-y-4 bg-gray-50 px-4 py-4 dark:bg-gray-950">
+			<div class={"grid gap-3 " + (wideDrawer ? '' : 'sm:grid-cols-2')}>
 				<div>
 					<Label for="agi-sort-mobile" class="mb-1 block text-sm">Sort</Label>
 					<Select
 						id="agi-sort-mobile"
 						value={$agiFilters.sort as any}
 						onchange={onSelect('sort')}
+						classes={{ select: 'agi-control' }}
 						items={sortOptions.map((o) => ({ name: o.label, value: o.value }))}
 					/>
 				</div>
@@ -238,6 +242,7 @@
 						inputmode="numeric"
 						placeholder="Any"
 						value={$agiFilters.minBathrooms ?? ''}
+						class="agi-control"
 						oninput={onNumber('minBathrooms')}
 					/>
 				</div>
@@ -251,6 +256,7 @@
 						inputmode="numeric"
 						placeholder="Any"
 						value={$agiFilters.minAreaM2 ?? ''}
+						class="agi-control"
 						oninput={onNumber('minAreaM2')}
 					/>
 				</div>
@@ -268,8 +274,8 @@
 			</div>
 
 			<div class="flex flex-wrap items-center justify-between gap-2">
-				<Button color="light" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>Clear all</Button>
-				<Button onclick={() => (moreOpen = false)} class="bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500">
+				<Button color="light" class="agi-btn-light" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>Clear all</Button>
+				<Button onclick={() => (moreOpen = false)} class="agi-btn-primary">
 					View results
 				</Button>
 			</div>

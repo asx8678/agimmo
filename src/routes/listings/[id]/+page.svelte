@@ -14,11 +14,11 @@
 
 <div class="space-y-6">
 	<div class="flex flex-wrap items-center justify-between gap-3">
-		<Button href="/" color="light">← Back to results</Button>
+		<Button href="/" color="light" class="agi-btn-light">← Back to results</Button>
 		<p class="text-sm text-gray-500 dark:text-gray-400">{listing.neighborhood}, {listing.city}</p>
 	</div>
 
-	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/60 dark:border-gray-800 dark:bg-gray-950/40">
+	<div class="agi-surface relative overflow-hidden bg-white/60 dark:bg-gray-950/40">
 		<div class="absolute inset-x-0 top-0">
 			<AgiZelligeLine class="opacity-70" />
 		</div>
@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="grid gap-6 lg:grid-cols-[1fr,320px]">
-		<Card class="border-0 shadow-sm ring-1 ring-gray-200/70 dark:bg-gray-950/60 dark:ring-gray-800">
+		<Card size="xl" class="rounded-2xl border-0 bg-white/70 p-6 shadow-sm ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 			<div class="flex flex-wrap items-start justify-between gap-3">
 				<div class="space-y-1">
 					<h1 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">{listing.title}</h1>
@@ -61,16 +61,16 @@
 			</div>
 		</Card>
 
-		<Card class="border-0 shadow-sm ring-1 ring-gray-200/70 dark:bg-gray-950/60 dark:ring-gray-800">
+		<Card size="xl" class="rounded-2xl border-0 bg-white/70 p-6 shadow-sm ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 			<h2 class="text-lg font-semibold">Next steps</h2>
 			<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
 				Add contact actions, scheduling, and verified landlord profiles.
 			</p>
 			<div class="mt-5 flex flex-wrap gap-2">
-				<Button href="/contact" class="bg-gradient-to-r from-emerald-600 to-sky-600 text-white hover:from-emerald-500 hover:to-sky-500">
+				<Button href="/contact" class="agi-btn-primary">
 					Contact
 				</Button>
-				<Button href="/" color="light">Keep browsing</Button>
+				<Button href="/" color="light" class="agi-btn-light">Keep browsing</Button>
 			</div>
 		</Card>
 	</div>

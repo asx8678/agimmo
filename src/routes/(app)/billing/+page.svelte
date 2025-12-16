@@ -145,7 +145,7 @@
 	{/if}
 
 	<div class="grid gap-6 md:grid-cols-2">
-		<Card class="border-0 shadow-lg">
+		<Card size="xl" class="rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 			<div class="flex items-start justify-between gap-4">
 				<div>
 					<h2 class="text-lg font-semibold">Current plan</h2>
@@ -169,34 +169,44 @@
 					</p>
 				</div>
 
-				<div class="flex flex-wrap justify-end gap-2">
-					<form method="POST" action="/api/stripe/portal">
-						<Button type="submit" color="light" disabled={!data.stripe.ready}>Manage billing</Button>
-					</form>
-					{#if !isSubscribed}
-						<Button onclick={openSubscribe} disabled={!data.stripe.ready}>Subscribe</Button>
-					{/if}
-				</div>
+					<div class="flex flex-wrap justify-end gap-2">
+						<form method="POST" action="/api/stripe/portal">
+							<Button type="submit" color="light" class="agi-btn-light" disabled={!data.stripe.ready}>Manage billing</Button>
+						</form>
+						{#if !isSubscribed}
+							<Button
+								onclick={openSubscribe}
+								class="agi-btn-primary"
+								disabled={!data.stripe.ready}
+								>Subscribe</Button
+							>
+						{/if}
+					</div>
 			</div>
 		</Card>
 
-		<Card class="border-0 shadow-lg">
+		<Card size="xl" class="rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 			<h2 class="text-lg font-semibold">Pro plan</h2>
 			<p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Payment Element checkout + webhook-driven state.</p>
 			<p class="mt-6 text-4xl font-semibold">$19</p>
 			<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">per month</p>
-			<ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-300">
-				<li>Stripe Customer Portal</li>
-				<li>Invoice history in-app</li>
-				<li>Subscription status badge</li>
-			</ul>
-			<div class="mt-8">
-				<Button onclick={openSubscribe} disabled={!data.stripe.ready || isSubscribed}>Subscribe</Button>
-			</div>
-		</Card>
+				<ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+					<li>Stripe Customer Portal</li>
+					<li>Invoice history in-app</li>
+					<li>Subscription status badge</li>
+				</ul>
+				<div class="mt-8">
+					<Button
+						onclick={openSubscribe}
+						class="agi-btn-primary"
+						disabled={!data.stripe.ready || isSubscribed}
+						>Subscribe</Button
+					>
+				</div>
+			</Card>
 	</div>
 
-	<Card class="border-0 shadow-lg">
+	<Card size="xl" class="rounded-2xl border-0 bg-white/80 p-6 shadow-xl ring-1 ring-gray-200/70 backdrop-blur dark:bg-gray-950/60 dark:ring-gray-800 sm:p-7">
 		<div class="flex items-center justify-between gap-4">
 			<div>
 				<h2 class="text-lg font-semibold">Invoices</h2>
@@ -228,7 +238,7 @@
 								<TableBodyCell>
 									{#if inv.hostedInvoiceUrl}
 										<a
-											class="font-medium text-blue-700 hover:underline dark:text-blue-400"
+											class="agi-link"
 											href={inv.hostedInvoiceUrl}
 											target="_blank"
 											rel="noreferrer"
@@ -259,12 +269,12 @@
 					<div bind:this={paymentMount}></div>
 				</div>
 
-				<div class="flex flex-wrap justify-end gap-2">
-					<Button color="light" onclick={closeModal}>Cancel</Button>
-					<LoadingButton onclick={confirmPayment} loading={confirmLoading} disabled={subscribeLoading || !stripe}>
-						Confirm payment
-					</LoadingButton>
-				</div>
+					<div class="flex flex-wrap justify-end gap-2">
+						<Button color="light" class="agi-btn-light" onclick={closeModal}>Cancel</Button>
+						<LoadingButton onclick={confirmPayment} loading={confirmLoading} disabled={subscribeLoading || !stripe}>
+							Confirm payment
+						</LoadingButton>
+					</div>
 			</div>
 		{/if}
 	</Modal>
