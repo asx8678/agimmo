@@ -5,7 +5,10 @@ import type { D1Database, KVNamespace } from '@cloudflare/workers-types';
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			env: App.Platform['env'];
+			user: import('$lib/server/auth/service').PublicUser | null;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		interface Platform {
