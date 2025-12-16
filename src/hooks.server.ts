@@ -15,6 +15,9 @@ let proxyPromise: Promise<{ env: App.Platform['env'] }> | undefined;
 
 async function getEnv(event: RequestEvent): Promise<App.Platform['env']> {
 	if (event.platform?.env) return event.platform.env as App.Platform['env'];
+	if (!import.meta.env.DEV) {
+		throw new Error('Missing Cloudflare platform env. Run with `wrangler dev`/`wrangler deploy`, or enable the dev proxy in local development.');
+	}
 	const { getPlatformProxy } = await import('wrangler');
 	proxyPromise ??= getPlatformProxy<App.Platform['env']>({ configPath: 'wrangler.jsonc' }).then((proxy) => ({
 		env: proxy.env as App.Platform['env']

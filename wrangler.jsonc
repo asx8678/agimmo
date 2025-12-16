@@ -13,7 +13,7 @@
 			"binding": "AGI_DB",
 			"database_name": "agi-db",
 			// Replace with the `database_id` from: `wrangler d1 create agi-db`
-			"database_id": "00000000-0000-0000-0000-000000000000",
+			"database_id": "b7e4cafe-94a8-4778-9b7b-35a10c6d47e7",
 			"migrations_dir": "migrations"
 		}
 	],
@@ -21,11 +21,12 @@
 		{
 			"binding": "AGI_SESSIONS",
 			// Replace with the `id` from: `wrangler kv namespace create agi-sessions`
-			"id": "00000000000000000000000000000000"
+			"id": "4da1daf435db4383adb2dd0a4e41fad3",
+			"preview_id": "9a965e92ff5648bd96a070c9119ecb80"
 		}
 	],
 	"vars": {
-		"AGI_APP_URL": "http://localhost:5173",
+		"AGI_APP_URL": "https://agi-codex-agadir.trillion.workers.dev",
 		"AGI_PBKDF2_ITERS": "100000",
 		"AGI_STRIPE_PUBLISHABLE_KEY": "pk_test_replace_me",
 		"AGI_STRIPE_PRICE_PRO": "price_replace_me"

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy, onMount, untrack } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	import type { AgiListing } from '$lib/types/agi-listing';
@@ -20,7 +20,7 @@
 	let L = $state.raw<Leaflet | null>(null);
 	let map = $state.raw<import('leaflet').Map | null>(null);
 	let markers = $state.raw(new Map<string, import('leaflet').CircleMarker>());
-	let didFit = $state(false);
+	let didFit = false;
 
 	const selectedStyle = {
 		radius: 10,
@@ -80,7 +80,6 @@
 			markers.set(listing.id, marker);
 		}
 
-		for (const marker of markers.values()) marker.setStyle(normalStyle);
 		if (!didFit) fitToListings();
 	};
 
@@ -126,6 +125,7 @@
 		if (!map || !L) return;
 		didFit = false;
 		syncMarkersForListings();
+		untrack(() => highlightSelected());
 	});
 
 	$effect(() => {
