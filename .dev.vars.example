@@ -1,0 +1,12 @@
+# Copy to `.dev.vars` for `wrangler dev`.
+AGI_APP_URL=http://localhost:8787
+AGI_PBKDF2_ITERS=100000
+
+# Auth
+AGI_SESSION_SECRET=replace_me_with_a_long_random_string
+
+# Stripe
+AGI_STRIPE_PUBLISHABLE_KEY=pk_test_replace_me
+AGI_STRIPE_SECRET_KEY=sk_test_replace_me
+AGI_STRIPE_WEBHOOK_SECRET=whsec_replace_me
+AGI_STRIPE_PRICE_PRO=price_replace_me
