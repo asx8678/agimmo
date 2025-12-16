@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte';
 
 	import AgiZelligeCorner from '$lib/components/agi/AgiZelligeCorner.svelte';
-	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 	import { agiActiveFilterChips, agiActiveFiltersCount, agiFilters, clearAgiFilter, resetAgiFilters, type AgiFilters, type AgiPropertyType, type AgiSort } from '$lib/stores/agi-filters';
 	import { agiMockListings } from '$lib/data/agi-mock-listings';
 
@@ -79,25 +78,19 @@
 			</div>
 		</div>
 
-			<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
-				<div class="lg:col-span-4">
-					<Label for="agi-location" class="sr-only">Location</Label>
-					<div class="relative">
-						<div
-							aria-hidden="true"
-							class="agi-zellige-line pointer-events-none absolute inset-x-0 top-0 z-10 h-1 rounded-t-xl"
-						></div>
+				<div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-12">
+					<div class="lg:col-span-4">
+						<Label for="agi-location" class="sr-only">Location</Label>
 						<Input
 							id="agi-location"
 							placeholder="Search city or neighborhood"
 							aria-label="Location"
 							value={$agiFilters.locationQuery}
 							data={suggestions}
-							class="agi-control relative z-0"
+							class="agi-control"
 							oninput={onText('locationQuery')}
 						/>
 					</div>
-				</div>
 
 			<div class="lg:col-span-2">
 				<div class="flex h-11 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white/80 px-3 shadow-sm dark:border-gray-800 dark:bg-gray-950/70">
@@ -208,12 +201,8 @@
 					{/each}
 				</div>
 			</div>
-		{/if}
-
-		<div class="mt-3">
-			<AgiZelligeLine class="opacity-70" />
+			{/if}
 		</div>
-	</div>
 
 	<Drawer placement={wideDrawer ? 'right' : 'bottom'} bind:open={moreOpen} class="p-0">
 		<div class="border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950">
