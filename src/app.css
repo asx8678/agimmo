@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "flowbite/plugin";
+
+@source "./**/*.{html,js,svelte,ts}";
+@source "../node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}";
+@source "../node_modules/flowbite/**/*.{html,js,svelte,ts}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body {
+	height: 100%;
+}
