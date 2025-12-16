@@ -2,6 +2,7 @@
 	import { onDestroy, onMount, untrack } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 	import type { AgiListing } from '$lib/types/agi-listing';
 
 	type Leaflet = typeof import('leaflet');
@@ -15,6 +16,10 @@
 		selectedId: string | null;
 		class?: string;
 	}>();
+
+	const selectedListing = $derived(
+		selectedId ? listings.find((l: AgiListing) => l.id === selectedId) ?? null : null
+	);
 
 	let container = $state<HTMLDivElement | null>(null);
 	let L = $state.raw<Leaflet | null>(null);
@@ -143,7 +148,33 @@
 
 <div class={className ?? ''}>
 	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/60 dark:border-gray-800 dark:bg-gray-950/40">
+		<div class="absolute inset-x-0 top-0">
+			<AgiZelligeLine class="opacity-70" />
+		</div>
 		<div bind:this={container} class="h-full min-h-[320px] w-full"></div>
+
+		{#if selectedListing}
+			<div class="pointer-events-none absolute inset-x-0 bottom-0 p-3">
+				<a
+					href={`/listings/${selectedListing.id}`}
+					class="pointer-events-auto flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white/90 px-3 py-2 text-sm text-gray-800 shadow-sm ring-1 ring-white/60 backdrop-blur transition hover:bg-white dark:border-gray-800 dark:bg-gray-950/80 dark:text-gray-100 dark:ring-black/30"
+				>
+					<div class="min-w-0">
+						<p class="truncate text-sm font-semibold">{selectedListing.title}</p>
+						<p class="truncate text-xs text-gray-600 dark:text-gray-300">
+							{selectedListing.neighborhood}, {selectedListing.city}
+						</p>
+					</div>
+					<div class="shrink-0 text-right">
+						<p class="text-sm font-semibold">{formatPrice(selectedListing)}</p>
+						<span class="mt-0.5 inline-flex items-center rounded-full bg-gray-900 px-2 py-0.5 text-[11px] font-medium text-white dark:bg-white dark:text-gray-900">
+							View
+						</span>
+					</div>
+				</a>
+			</div>
+		{/if}
+
 		<noscript>
 			<div class="absolute inset-0 grid place-items-center p-6 text-sm text-gray-600 dark:text-gray-300">
 				Enable JavaScript to view the map.

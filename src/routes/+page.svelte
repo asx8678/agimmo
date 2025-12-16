@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Badge, Button, Select } from 'flowbite-svelte';
+	import { Button, Select } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 
 	import AgiFiltersBar from '$lib/components/agi/AgiFiltersBar.svelte';
@@ -57,29 +57,29 @@
 </script>
 
 <div class="space-y-6">
-	<p class="text-sm text-gray-600 dark:text-gray-300">Find homes in Agadir — rent or buy, without the noise.</p>
+	<div class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-3 py-1 text-xs text-gray-700 ring-1 ring-white/60 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 dark:text-gray-200 dark:ring-black/20">
+		<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+		Find homes in Agadir — rent or buy, without the noise.
+	</div>
 
 	<AgiFiltersBar />
 
 	<div class="flex flex-wrap items-center justify-between gap-3">
 		<div class="flex items-center gap-2">
 			<h1 class="text-base font-semibold tracking-tight sm:text-lg">{$agiFilteredListings.length} homes found</h1>
-			{#if $agiActiveFiltersCount > 0}
-				<Badge
-					color="gray"
-					class="border border-gray-200 bg-white/70 text-xs text-gray-700 dark:border-gray-800 dark:bg-gray-950/60 dark:text-gray-200"
-				>
-					{$agiActiveFiltersCount} filters
-				</Badge>
-			{/if}
 		</div>
 
 		<div class="flex items-center gap-2">
 			{#if $agiIsAnyFilterActive}
-				<Button color="light" onclick={resetAgiFilters}>Clear filters</Button>
+				<Button color="light" onclick={resetAgiFilters}>
+					Clear
+					{#if $agiActiveFiltersCount > 0}
+						<span class="hidden sm:inline text-xs opacity-70"> ({$agiActiveFiltersCount})</span>
+					{/if}
+				</Button>
 			{/if}
 
-			<div class="w-56">
+			<div class="w-44 sm:w-56">
 				<Select
 					aria-label="Sort listings"
 					value={$agiFilters.sort as any}
@@ -125,39 +125,43 @@
 			on:select={(e) => (pinnedId = e.detail.id)}
 		/>
 	{:else}
-		<div class="grid gap-6 lg:grid-cols-[1fr,420px]">
-			<div>
-				<AgiListingsGrid
-					listings={$agiFilteredListings}
-					selectedId={activeId}
-					on:select={(e) => (hoveredId = e.detail.id)}
-				/>
-			</div>
+		{#if isDesktop && desktopShowMap}
+			<div class="grid gap-6 lg:grid-cols-[1fr,420px]">
+				<div>
+					<AgiListingsGrid
+						layout="split"
+						listings={$agiFilteredListings}
+						selectedId={activeId}
+						on:select={(e) => (hoveredId = e.detail.id)}
+					/>
+				</div>
 
-			<aside class="hidden lg:block">
-				<div class="sticky top-24 space-y-3">
-					<div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-						<span>Map</span>
-						{#if $agiFilteredListings.length > 0}
-							<span>{$agiFilteredListings.length} markers</span>
-						{/if}
-					</div>
+				<aside class="hidden lg:block">
+					<div class="sticky top-28 space-y-3">
+						<div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+							<span>Map</span>
+							{#if $agiFilteredListings.length > 0}
+								<span>{$agiFilteredListings.length} markers</span>
+							{/if}
+						</div>
 
-					{#if isDesktop && desktopShowMap}
 						<AgiMapPanel
-							class="h-[calc(100vh-10rem)]"
+							class="h-[calc(100vh-12rem)]"
 							listings={$agiFilteredListings}
 							selectedId={activeId}
 							on:select={(e) => (pinnedId = e.detail.id)}
 						/>
-					{:else}
-						<div class="grid h-[calc(100vh-10rem)] place-items-center rounded-2xl border border-dashed border-gray-300 bg-white/50 p-6 text-sm text-gray-600 dark:border-gray-800 dark:bg-gray-950/40 dark:text-gray-300">
-							<p>Switch to Map view to load the map.</p>
-						</div>
-					{/if}
-				</div>
-			</aside>
-		</div>
+					</div>
+				</aside>
+			</div>
+		{:else}
+			<AgiListingsGrid
+				layout="full"
+				listings={$agiFilteredListings}
+				selectedId={activeId}
+				on:select={(e) => (hoveredId = e.detail.id)}
+			/>
+		{/if}
 	{/if}
 
 	<AgiLandlordCTA />

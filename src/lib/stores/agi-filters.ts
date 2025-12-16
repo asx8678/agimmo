@@ -102,6 +102,8 @@ export type AgiActiveFilterChip = { key: keyof AgiFilters; label: string };
 
 export const agiActiveFilterChips = derived(agiFilters, ($filters): AgiActiveFilterChip[] => {
 	const chips: AgiActiveFilterChip[] = [];
+	const formatMoney = (amount: number) =>
+		new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(amount);
 
 	const q = $filters.locationQuery.trim();
 	if (q) chips.push({ key: 'locationQuery', label: `“${q}”` });
@@ -113,8 +115,8 @@ export const agiActiveFilterChips = derived(agiFilters, ($filters): AgiActiveFil
 	if ($filters.showFurnishedOnly) chips.push({ key: 'showFurnishedOnly', label: 'Furnished' });
 
 	if ($filters.minPrice !== undefined || $filters.maxPrice !== undefined) {
-		const min = $filters.minPrice !== undefined ? `${$filters.minPrice}` : 'Any';
-		const max = $filters.maxPrice !== undefined ? `${$filters.maxPrice}` : 'Any';
+		const min = $filters.minPrice !== undefined ? formatMoney($filters.minPrice) : 'Any';
+		const max = $filters.maxPrice !== undefined ? formatMoney($filters.maxPrice) : 'Any';
 		chips.push({ key: 'minPrice', label: `${min}–${max} MAD` });
 	}
 
@@ -140,9 +142,12 @@ export function clearAgiFilter(key: keyof AgiFilters) {
 		else if (key === 'mode') next.mode = agiDefaultFilters.mode;
 		else if (key === 'sort') next.sort = agiDefaultFilters.sort;
 		else if (key === 'showFurnishedOnly') next.showFurnishedOnly = false;
+		else if (key === 'minPrice' || key === 'maxPrice') {
+			next.minPrice = undefined;
+			next.maxPrice = undefined;
+		}
 		else (next as any)[key] = undefined;
 
 		return next;
 	});
 }
-

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Badge, Button, Drawer, Input, Label, Select, Toggle } from 'flowbite-svelte';
+	import { Button, Drawer, Input, Label, Select, Toggle } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 
 	import AgiZelligeCorner from '$lib/components/agi/AgiZelligeCorner.svelte';
 	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
@@ -23,6 +24,7 @@
 	).slice(0, 12);
 
 	let moreOpen = $state(false);
+	let wideDrawer = $state(false);
 
 	const setFilters = (patch: Partial<AgiFilters>) => {
 		agiFilters.update((f) => ({ ...f, ...patch }));
@@ -46,6 +48,16 @@
 		};
 
 	const onMode = (mode: 'rent' | 'buy') => () => setFilters({ mode });
+
+	onMount(() => {
+		const mql = window.matchMedia('(min-width: 768px)');
+		const update = () => {
+			wideDrawer = mql.matches;
+		};
+		update();
+		mql.addEventListener?.('change', update);
+		return () => mql.removeEventListener?.('change', update);
+	});
 </script>
 
 <section class="sticky top-0 z-40 -mx-4 border-b border-gray-200 bg-gray-50/70 backdrop-blur dark:border-gray-800 dark:bg-gray-950/60 sm:-mx-6 lg:-mx-8">
@@ -63,10 +75,8 @@
 					{/if}
 				</div>
 				<div class="flex items-center gap-2">
-					<Button color="light" class="hidden sm:inline-flex" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>
-						Clear
-					</Button>
-					<Button color="light" class="sm:hidden" onclick={() => (moreOpen = true)}>More filters</Button>
+					<Button color="light" disabled={$agiActiveFiltersCount === 0} onclick={resetAgiFilters}>Clear</Button>
+					<Button color="light" onclick={() => (moreOpen = true)}>More</Button>
 				</div>
 			</div>
 
@@ -160,58 +170,43 @@
 					/>
 				</div>
 
-				<div class="lg:col-span-1">
-					<Label for="agi-type" class="sr-only">Property type</Label>
-					<Select
-						id="agi-type"
+					<div class="lg:col-span-1">
+						<Label for="agi-type" class="sr-only">Property type</Label>
+						<Select
+							id="agi-type"
 						aria-label="Property type"
 						value={($agiFilters.propertyType ?? '') as any}
 						onchange={onSelect('propertyType')}
 						placeholder="Type"
-						items={[{ name: 'Any type', value: '' }, ...propertyTypes.map((t) => ({ name: t, value: t }))]}
-					/>
-				</div>
-
-				<div class="hidden lg:col-span-12 lg:block">
-					<div class="flex flex-wrap items-center justify-between gap-3">
-						<div class="flex flex-wrap items-center gap-2">
-							{#if $agiActiveFilterChips.length > 0}
-								{#each $agiActiveFilterChips as chip (chip.key + chip.label)}
-									<Badge
-										color="gray"
-										class="cursor-pointer select-none gap-2 border border-gray-200 bg-white/70 text-gray-700 hover:bg-white dark:border-gray-800 dark:bg-gray-900/70 dark:text-gray-200"
-										onclick={() => clearAgiFilter(chip.key)}
-									>
-										<span class="text-xs">{chip.label}</span>
-										<span class="text-xs opacity-60">×</span>
-									</Badge>
-								{/each}
-							{/if}
-						</div>
-
-						<div class="flex items-center gap-2">
-							<Label for="agi-sort" class="sr-only">Sort</Label>
-							<Select
-								id="agi-sort"
-								aria-label="Sort"
-								value={$agiFilters.sort as any}
-								onchange={onSelect('sort')}
-								items={sortOptions.map((o) => ({ name: o.label, value: o.value }))}
-							/>
-
-							<Button color="light" onclick={() => (moreOpen = true)}>More</Button>
-						</div>
+							items={[{ name: 'Any type', value: '' }, ...propertyTypes.map((t) => ({ name: t, value: t }))]}
+						/>
 					</div>
 				</div>
-			</div>
 
-			<div class="mt-3">
-				<AgiZelligeLine class="opacity-70" />
-			</div>
+				{#if $agiActiveFilterChips.length > 0}
+					<div class="mt-3 flex items-center gap-2">
+						<div class="-mx-1 flex flex-1 gap-2 overflow-x-auto px-1 pb-1">
+							{#each $agiActiveFilterChips as chip (chip.key + chip.label)}
+								<button
+									type="button"
+									class="inline-flex shrink-0 items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/60 dark:border-gray-800 dark:bg-gray-900/70 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus-visible:ring-emerald-900/40"
+									onclick={() => clearAgiFilter(chip.key)}
+								>
+									<span>{chip.label}</span>
+									<span class="opacity-60">×</span>
+								</button>
+							{/each}
+						</div>
+					</div>
+				{/if}
+
+				<div class="mt-3">
+					<AgiZelligeLine class="opacity-70" />
+				</div>
 		</div>
 	</div>
 
-	<Drawer placement="bottom" bind:open={moreOpen} class="p-0">
+		<Drawer placement={wideDrawer ? 'right' : 'bottom'} bind:open={moreOpen} class="p-0">
 		<div class="border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950">
 			<div class="flex items-center justify-between gap-3">
 				<div>
@@ -222,8 +217,8 @@
 			</div>
 		</div>
 
-		<div class="space-y-4 bg-gray-50 px-4 py-4 dark:bg-gray-950">
-			<div class="grid gap-3 sm:grid-cols-2">
+			<div class="space-y-4 bg-gray-50 px-4 py-4 dark:bg-gray-950">
+				<div class={"grid gap-3 " + (wideDrawer ? '' : 'sm:grid-cols-2')}>
 				<div>
 					<Label for="agi-sort-mobile" class="mb-1 block text-sm">Sort</Label>
 					<Select

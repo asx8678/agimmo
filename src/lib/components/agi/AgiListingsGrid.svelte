@@ -8,7 +8,17 @@
 		select: { id: string | null };
 	}>();
 
-	let { listings, selectedId } = $props<{ listings: AgiListing[]; selectedId: string | null }>();
+	let { listings, selectedId, layout = 'full' } = $props<{
+		listings: AgiListing[];
+		selectedId: string | null;
+		layout?: 'full' | 'split';
+	}>();
+
+	const gridClass = $derived(
+		layout === 'split'
+			? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3'
+			: 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
+	);
 
 	let savedIds = $state<Set<string>>(new Set());
 
@@ -25,7 +35,7 @@
 		<p class="mt-2">Try widening your search — fewer filters, broader location.</p>
 	</div>
 {:else}
-	<div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+	<div class={gridClass}>
 		{#each listings as listing (listing.id)}
 			<AgiListingCard
 				{listing}
@@ -38,4 +48,3 @@
 		{/each}
 	</div>
 {/if}
-

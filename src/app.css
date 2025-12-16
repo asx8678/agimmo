@@ -11,10 +11,25 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+	color-scheme: light;
 	--agi-morocco-teal: 12 116 117;
 	--agi-morocco-indigo: 37 99 235;
 	--agi-morocco-saffron: 217 119 6;
 	--agi-morocco-terracotta: 185 28 28;
+}
+
+html.dark {
+	color-scheme: dark;
+}
+
+::selection {
+	background: rgb(15 23 42 / 0.12);
+}
+
+@layer base {
+	html {
+		@apply antialiased;
+	}
 }
 
 @layer components {
@@ -30,7 +45,7 @@
 			rgb(var(--agi-morocco-terracotta)) 75%,
 			rgb(var(--agi-morocco-terracotta)) 100%
 		);
-		background-size: 28px 100%;
+		background-size: 28px 1px;
 		background-repeat: repeat;
 		opacity: 0.65;
 	}
