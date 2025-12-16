@@ -5,10 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"dev:cf": "wrangler dev --local --persist-to .wrangler/state",
+		"dev:cf": "pnpm build && wrangler dev --local --persist-to .wrangler/state",
 		"build": "vite build",
 		"preview": "vite preview",
-		"deploy": "wrangler deploy",
+		"deploy": "pnpm build && wrangler deploy",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate:local": "wrangler d1 migrations apply agi-db --local",
 		"db:migrate:remote": "wrangler d1 migrations apply agi-db --remote",

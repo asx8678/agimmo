@@ -2,7 +2,6 @@ import type { Handle, RequestEvent } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
-import { getPlatformProxy } from 'wrangler';
 
 import { getUserById } from '$lib/server/auth/service';
 
@@ -16,6 +15,7 @@ let proxyPromise: Promise<{ env: App.Platform['env'] }> | undefined;
 
 async function getEnv(event: RequestEvent): Promise<App.Platform['env']> {
 	if (event.platform?.env) return event.platform.env as App.Platform['env'];
+	const { getPlatformProxy } = await import('wrangler');
 	proxyPromise ??= getPlatformProxy<App.Platform['env']>({ configPath: 'wrangler.jsonc' }).then((proxy) => ({
 		env: proxy.env as App.Platform['env']
 	}));

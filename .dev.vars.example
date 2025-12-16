@@ -1,5 +1,5 @@
 # Copy to `.dev.vars` for `wrangler dev`.
-AGI_APP_URL=http://localhost:8787
+AGI_APP_URL=http://localhost:5173
 AGI_PBKDF2_ITERS=100000
 
 # Auth

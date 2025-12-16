@@ -12,6 +12,7 @@
 		{
 			"binding": "AGI_DB",
 			"database_name": "agi-db",
+			// Replace with the `database_id` from: `wrangler d1 create agi-db`
 			"database_id": "00000000-0000-0000-0000-000000000000",
 			"migrations_dir": "migrations"
 		}
@@ -19,6 +20,7 @@
 	"kv_namespaces": [
 		{
 			"binding": "AGI_SESSIONS",
+			// Replace with the `id` from: `wrangler kv namespace create agi-sessions`
 			"id": "00000000000000000000000000000000"
 		}
 	],
