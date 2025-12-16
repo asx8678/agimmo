@@ -10,6 +10,36 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+	--agi-morocco-teal: 12 116 117;
+	--agi-morocco-indigo: 37 99 235;
+	--agi-morocco-saffron: 217 119 6;
+	--agi-morocco-terracotta: 185 28 28;
+}
+
+@layer components {
+	.agi-zellige-line {
+		background-image: linear-gradient(
+			90deg,
+			rgb(var(--agi-morocco-teal)) 0%,
+			rgb(var(--agi-morocco-teal)) 25%,
+			rgb(var(--agi-morocco-indigo)) 25%,
+			rgb(var(--agi-morocco-indigo)) 50%,
+			rgb(var(--agi-morocco-saffron)) 50%,
+			rgb(var(--agi-morocco-saffron)) 75%,
+			rgb(var(--agi-morocco-terracotta)) 75%,
+			rgb(var(--agi-morocco-terracotta)) 100%
+		);
+		background-size: 28px 100%;
+		background-repeat: repeat;
+		opacity: 0.65;
+	}
+
+	:where(.dark, .dark *) .agi-zellige-line {
+		opacity: 0.5;
+	}
+}
+
 html,
 body {
 	height: 100%;

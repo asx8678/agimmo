@@ -2,7 +2,7 @@
 	import { Button, Card } from 'flowbite-svelte';
 
 	import AgiZelligeCorner from '$lib/components/agi/AgiZelligeCorner.svelte';
-	import AgiZelligeStripe from '$lib/components/agi/AgiZelligeStripe.svelte';
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 
 	let { data } = $props();
 </script>
@@ -10,7 +10,9 @@
 <div class="space-y-6">
 	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-r from-emerald-600/10 to-sky-600/10 p-6 ring-1 ring-white/60 dark:border-gray-800 dark:from-emerald-500/10 dark:to-sky-500/10 dark:ring-black/20 sm:p-8">
 		<AgiZelligeCorner corner="top-right" class="opacity-60" />
-		<AgiZelligeStripe class="absolute inset-x-0 top-0 h-2 opacity-70" />
+		<div class="absolute inset-x-0 top-0">
+			<AgiZelligeLine class="opacity-70" />
+		</div>
 
 		<h1 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">List a property</h1>
 		<p class="mt-2 max-w-2xl text-sm text-gray-600 dark:text-gray-300">
@@ -41,4 +43,3 @@
 		</ul>
 	</Card>
 </div>
-

@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { Button } from 'flowbite-svelte';
 
-	import AgiZelligeStripe from '$lib/components/agi/AgiZelligeStripe.svelte';
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 </script>
 
 <section aria-label="List your property" class="pt-2">
 	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-r from-emerald-600/10 to-sky-600/10 p-6 ring-1 ring-white/60 dark:border-gray-800 dark:from-emerald-500/10 dark:to-sky-500/10 dark:ring-black/20 sm:p-8">
-		<AgiZelligeStripe class="absolute inset-x-0 top-0 h-2 opacity-70" />
+		<div class="absolute inset-x-0 top-0">
+			<AgiZelligeLine class="opacity-70" />
+		</div>
 
 		<div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
 			<div class="max-w-xl">
@@ -30,4 +32,3 @@
 		</div>
 	</div>
 </section>
-

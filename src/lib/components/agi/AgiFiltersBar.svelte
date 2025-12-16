@@ -2,7 +2,7 @@
 	import { Badge, Button, Drawer, Input, Label, Select, Toggle } from 'flowbite-svelte';
 
 	import AgiZelligeCorner from '$lib/components/agi/AgiZelligeCorner.svelte';
-	import AgiZelligeStripe from '$lib/components/agi/AgiZelligeStripe.svelte';
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 	import { agiActiveFilterChips, agiActiveFiltersCount, agiFilters, clearAgiFilter, resetAgiFilters, type AgiFilters, type AgiPropertyType, type AgiSort } from '$lib/stores/agi-filters';
 	import { agiMockListings } from '$lib/data/agi-mock-listings';
 
@@ -206,7 +206,7 @@
 			</div>
 
 			<div class="mt-3">
-				<AgiZelligeStripe class="h-2 w-full opacity-70" />
+				<AgiZelligeLine class="opacity-70" />
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Badge, Button, Card } from 'flowbite-svelte';
 
-	import AgiZelligeStripe from '$lib/components/agi/AgiZelligeStripe.svelte';
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 	import type { AgiListing } from '$lib/types/agi-listing';
 
 	let { data } = $props<{ data: { listing: AgiListing } }>();
@@ -19,7 +19,9 @@
 	</div>
 
 	<div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/60 dark:border-gray-800 dark:bg-gray-950/40">
-		<AgiZelligeStripe class="absolute inset-x-0 top-0 h-2 opacity-70" />
+		<div class="absolute inset-x-0 top-0">
+			<AgiZelligeLine class="opacity-70" />
+		</div>
 		<img src={listing.coverImage} alt={listing.title} class="h-64 w-full object-cover sm:h-80" />
 	</div>
 
@@ -73,4 +75,3 @@
 		</Card>
 	</div>
 </div>
-

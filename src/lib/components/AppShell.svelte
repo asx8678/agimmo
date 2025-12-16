@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AgiTopNav from '$lib/components/agi/AgiTopNav.svelte';
+	import AgiZelligeLine from '$lib/components/agi/AgiZelligeLine.svelte';
 
 	type ShellUser = {
 		id: string;
@@ -10,6 +11,7 @@
 </script>
 
 <div class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+	<AgiZelligeLine class="opacity-70" />
 	<AgiTopNav {user} />
 
 	<main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
