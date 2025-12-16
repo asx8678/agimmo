@@ -15,7 +15,7 @@
 	<Card class="border-0 shadow-lg">
 		<header class="space-y-1">
 			<h1 class="text-2xl font-semibold tracking-tight">Create your account</h1>
-			<p class="text-sm text-gray-600 dark:text-gray-300">Start building with Codex Agadir.</p>
+			<p class="text-sm text-gray-600 dark:text-gray-300">Start exploring with Agimmo.</p>
 		</header>
 
 		{#if $errors._errors?.length}
